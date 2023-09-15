@@ -18,7 +18,6 @@ class _RandomAnimeSuggestionState extends State<RandomAnimeSuggestion> {
   @override
   void initState() {
     animeRecommendationPageFutuer = anime.getRandomAnimeRecommendation();
-
     super.initState();
   }
 

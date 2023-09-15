@@ -46,7 +46,9 @@ class Datum {
         type: json["type"].toString(),
         episodes: json['episodes'].toString(),
         synopsis: json["synopsis"],
-        trailerURL: json["trailer"]["embed_url"],
+        trailerURL: json["trailer"]["embed_url"] == null
+            ? null
+            : json["trailer"]["embed_url"],
         genres: List<Demographic>.from(
             json["genres"].map((x) => Demographic.fromJson(x))),
         status: json["status"],

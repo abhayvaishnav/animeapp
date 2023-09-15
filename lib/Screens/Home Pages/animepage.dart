@@ -56,6 +56,7 @@ class _AnimeHomePageState extends State<AnimeHomePage> {
               animePageUrl: ApiUrl.upcomingAnimeURL,
               decorationImagePath: 'Assets/banner2.jpeg',
             ),
+            // anime suggestions
             Container(
               padding: const EdgeInsets.all(10),
               child: Column(
@@ -65,7 +66,10 @@ class _AnimeHomePageState extends State<AnimeHomePage> {
                     "Suggested Anime",
                     style: AppStyle.homepageStyle,
                   ),
-                  SizedBox(height: 600, child: RandomAnimeSuggestion()),
+                  const SizedBox(height: 10),
+                  SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.5,
+                      child: const RandomAnimeSuggestion()),
                 ],
               ),
             )

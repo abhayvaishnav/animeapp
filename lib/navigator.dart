@@ -87,8 +87,8 @@ class AppNavigatorState extends State<AppNavigator> {
                             curve: Curves.fastLinearToSlowEaseIn,
                             child: Text(
                               index == currentIndex ? listOfStrings[index] : '',
-                              style: const TextStyle(
-                                color: Colors.blueAccent,
+                              style: TextStyle(
+                                color: Theme.of(context).colorScheme.primary,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 15,
                               ),
@@ -107,7 +107,7 @@ class AppNavigatorState extends State<AppNavigator> {
                             listOfIcons[index],
                             size: width * .076,
                             color: index == currentIndex
-                                ? Colors.blue
+                                ? Theme.of(context).colorScheme.primary
                                 : Colors.black26,
                           ),
                         ],
