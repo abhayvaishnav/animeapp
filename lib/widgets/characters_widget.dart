@@ -1,3 +1,4 @@
+import 'package:animeapp/Network/network.dart';
 import 'package:flutter/material.dart';
 
 import '../Models/characters/anime_characters_model.dart';
@@ -8,7 +9,7 @@ class CharactersWidget extends StatefulWidget {
   final double height;
   final double width;
   final Color pageColor;
-  final Future getAnimeCharacters;
+  final String getAnimeCharacters;
 
   const CharactersWidget({
     super.key,
@@ -23,6 +24,15 @@ class CharactersWidget extends StatefulWidget {
 }
 
 class _CharactersWidgetState extends State<CharactersWidget> {
+  Anime anime = Anime();
+  late Future<dynamic> characterFuture;
+
+  @override
+  void initState() {
+    characterFuture = anime.getAnimeCharacters(widget.getAnimeCharacters);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -37,7 +47,7 @@ class _CharactersWidgetState extends State<CharactersWidget> {
           height: widget.height * 0.12,
           width: widget.width,
           child: FutureBuilder(
-              future: widget.getAnimeCharacters,
+              future: characterFuture,
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 AnimeCharactersModel? getAnimeCharactersModel = snapshot.data;
                 final error = snapshot.error;

@@ -63,7 +63,7 @@ class AnimeRecommendationPageState extends State<AnimeRecommendationPage> {
                           shrinkWrap: true,
                           itemCount: topAiringAnime?.data.length,
                           itemBuilder: (BuildContext context, int index) {
-                            return Text("HI");
+                            return const Text("HI");
                             // AnimeCard(
                             //   height: height,
                             //   width: width,

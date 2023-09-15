@@ -1,3 +1,4 @@
+import 'package:animeapp/Network/network.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,7 @@ class SuggestionsWidget extends StatefulWidget {
   final double height;
   final double width;
   final Color pageColor;
-  final Future getAnimeRecommendation;
+  final String getAnimeRecommendation;
 
   const SuggestionsWidget({
     super.key,
@@ -24,6 +25,16 @@ class SuggestionsWidget extends StatefulWidget {
 }
 
 class _SuggestionsWidgetState extends State<SuggestionsWidget> {
+  Anime anime = Anime();
+  late Future<AnimeRecommendationModel> suggestionFuture;
+
+  @override
+  void initState() {
+    suggestionFuture =
+        anime.getAnimeRecommendation(widget.getAnimeRecommendation);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -37,7 +48,7 @@ class _SuggestionsWidgetState extends State<SuggestionsWidget> {
             height: widget.height * 0.3,
             width: widget.width,
             child: FutureBuilder(
-                future: widget.getAnimeRecommendation,
+                future: suggestionFuture,
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   AnimeRecommendationModel? animeRecommendationModel =
                       snapshot.data;

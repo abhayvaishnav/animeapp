@@ -1,4 +1,5 @@
 import 'package:animeapp/Network/network.dart';
+import 'package:animeapp/app_style.dart';
 import 'package:flutter/material.dart';
 
 import '../anime/anime_page.dart';
@@ -18,70 +19,97 @@ class _AnimeHomePageState extends State<AnimeHomePage> {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(elevation: 0.0, title: const Text('Anime'), actions: [
-        IconButton(
-            icon: const Icon(Icons.search_rounded),
-            onPressed: () {
-              debugPrint("Pressed");
-            }),
-      ]),
+      appBar: AppBar(
+        elevation: 0.0,
+        title: const Text('Anime'),
+        actions: [
+          IconButton(
+              icon: const Icon(Icons.search_rounded),
+              onPressed: () {
+                debugPrint("Pressed");
+              }),
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            homeScreenBanner(
+                height: height,
+                width: width,
+                context: context,
+                animePageTitle: 'Top Rated Anime',
+                animePageUrl: ApiUrl.topRatedAnimeURL,
+                decorationImagePath: 'Assets/banner3.jpeg'),
             homeScreenBanner(
               height: height,
               width: width,
               context: context,
               animePageTitle: 'Top Airing Anime',
               animePageUrl: ApiUrl.topAiringAnimeURL,
+              decorationImagePath: 'Assets/banner1.jpeg',
             ),
             homeScreenBanner(
               height: height,
               width: width,
               context: context,
-              animePageTitle: 'Top Upcoming Anime',
+              animePageTitle: 'Upcoming Anime',
               animePageUrl: ApiUrl.upcomingAnimeURL,
+              decorationImagePath: 'Assets/banner2.jpeg',
             ),
-            homeScreenBanner(
-              height: height,
-              width: width,
-              context: context,
-              animePageTitle: 'Top Rated Anime',
-              animePageUrl: ApiUrl.topRatedAnimeURL,
-            ),
-            const RandomAnimeSuggestion()
+            Container(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Suggested Anime",
+                    style: AppStyle.homepageStyle,
+                  ),
+                  SizedBox(height: 600, child: RandomAnimeSuggestion()),
+                ],
+              ),
+            )
           ],
         ),
       ),
     );
   }
 
-  Container homeScreenBanner({
-    required double height,
-    required double width,
-    required BuildContext context,
-    required String animePageTitle,
-    required String animePageUrl,
-  }) {
+  Container homeScreenBanner(
+      {required double height,
+      required double width,
+      required BuildContext context,
+      required String animePageTitle,
+      required String animePageUrl,
+      required String decorationImagePath}) {
     return Container(
       margin: const EdgeInsets.all(10),
-      height: height * 0.18,
-      width: width,
-      color: Colors.red,
+      decoration: BoxDecoration(
+        image: DecorationImage(
+            image: AssetImage(decorationImagePath), fit: BoxFit.contain),
+      ),
       child: InkWell(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (builder) => AnimePage(
-                        title: animePageTitle,
-                        url: animePageUrl,
-                      )),
-            );
-          },
-          child: const Center(
-            child: Text('Top Rated Anime'),
-          )),
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (builder) => AnimePage(
+                      title: animePageTitle,
+                      url: animePageUrl,
+                    )),
+          );
+        },
+        child: Stack(children: <Widget>[
+          Image.asset(decorationImagePath),
+          Align(
+            alignment: Alignment.topLeft,
+            child: Text(
+              animePageTitle,
+              style: AppStyle.homepageStyle,
+            ),
+          )
+        ]),
+      ),
     );
   }
 }

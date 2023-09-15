@@ -22,33 +22,38 @@ class AnimePage extends StatefulWidget {
 }
 
 class _AnimePageState extends State<AnimePage> {
+  late Future<AnimeModel> animePageFuture;
+  final scrollController = ScrollController();
+  @override
+  void initState() {
+    animePageFuture = Anime().getAnime(widget.url, 10);
+    scrollController.addListener(_scrollListner);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    final scrollController = ScrollController();
-    Future getAnime = Anime().getAnime(widget.url, 5);
+    // Future getAnime = Anime().getAnime(widget.url, 5);
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-
-    @override
-    void initState() {
-      super.initState();
-      scrollController.addListener(_scrollListner);
-    }
 
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_new_rounded),
+          icon: const Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: Colors.white,
+          ),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
         iconTheme: const IconThemeData(color: Colors.black),
-        backgroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         elevation: 0.0,
         title: Text(
           widget.title,
-          style: const TextStyle(color: Colors.black),
+          style: const TextStyle(color: Colors.white),
         ),
         centerTitle: true,
       ),
@@ -62,7 +67,7 @@ class _AnimePageState extends State<AnimePage> {
                 height: height,
                 width: width,
                 child: FutureBuilder(
-                    future: getAnime,
+                    future: animePageFuture,
                     builder: (BuildContext context, AsyncSnapshot snapshot) {
                       AnimeModel? topAiringAnime = snapshot.data;
                       final error = snapshot.error;
@@ -74,7 +79,7 @@ class _AnimePageState extends State<AnimePage> {
                       }
                       if (snapshot.hasData) {
                         return ListView.builder(
-                          controller: scrollController,
+                          // controller: scrollController,
                           shrinkWrap: true,
                           itemCount: topAiringAnime?.data.length,
                           itemBuilder: (BuildContext context, int index) {

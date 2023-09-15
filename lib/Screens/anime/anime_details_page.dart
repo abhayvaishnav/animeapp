@@ -48,7 +48,7 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
             Navigator.pop(context);
           },
         ),
-        backgroundColor: widget.pageColor,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         elevation: 0,
         centerTitle: true,
         title: Text(
@@ -85,8 +85,8 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
                 height: height,
                 width: width,
                 pageColor: widget.pageColor,
-                getAnimeCharacters: anime.getAnimeCharacters(
-                    widget.topAiringAnime!.data[widget.index].malId.toString()),
+                getAnimeCharacters:
+                    widget.topAiringAnime!.data[widget.index].malId.toString(),
               ),
               const SizedBox(height: 20),
               widget.topAiringAnime?.data[widget.index].status ==
@@ -113,9 +113,8 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
                 height: height,
                 width: width,
                 pageColor: widget.pageColor,
-                getAnimeRecommendation: anime.getAnimeRecommendation(
-                  '${widget.topAiringAnime?.data[widget.index].malId.toString()}',
-                ),
+                getAnimeRecommendation:
+                    '${widget.topAiringAnime?.data[widget.index].malId.toString()}',
               )
             ],
           ),

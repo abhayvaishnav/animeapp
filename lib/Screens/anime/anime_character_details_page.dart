@@ -23,6 +23,15 @@ class AnimeCharacterDetails extends StatefulWidget {
 class AnimeCharacterDetailsState extends State<AnimeCharacterDetails> {
   // function calls
   Anime anime = Anime();
+  late Future<AnimeCharacterDetailsModel> animeCharacterDetailsFuture;
+
+  @override
+  void initState() {
+    animeCharacterDetailsFuture =
+        anime.getAnimeCharacterDetails(widget.characterID.toString());
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
@@ -34,16 +43,14 @@ class AnimeCharacterDetailsState extends State<AnimeCharacterDetails> {
           widget.characterName,
           style: AppStyle.mainTitle,
         ),
-        backgroundColor: widget.colorID,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         elevation: 0.0,
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             FutureBuilder(
-                future: anime.getAnimeCharacterDetails(
-                  widget.characterID.toString(),
-                ),
+                future: animeCharacterDetailsFuture,
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
                   AnimeCharacterDetailsModel? getAnimeCharacterDetailsModel =
                       snapshot.data;
@@ -95,7 +102,7 @@ class AnimeCharacterDetailsState extends State<AnimeCharacterDetails> {
                             expandText: 'read all',
                             collapseText: 'read less',
                             maxLines: 8,
-                            linkColor: Colors.blue,
+                            linkColor: const Color(0xFF343A40),
                             animation: true,
                             collapseOnTextTap: true,
                             style: AppStyle.mainContent,

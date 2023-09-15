@@ -43,4 +43,10 @@ class AppStyle {
     fontWeight: FontWeight.w500,
     color: Colors.black,
   );
+
+  static TextStyle homepageStyle = const TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+    fontStyle: FontStyle.italic,
+  );
 }

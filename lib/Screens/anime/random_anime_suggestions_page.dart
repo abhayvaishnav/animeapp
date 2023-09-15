@@ -12,13 +12,22 @@ class RandomAnimeSuggestion extends StatefulWidget {
 }
 
 class _RandomAnimeSuggestionState extends State<RandomAnimeSuggestion> {
+  late Future<RandomAnimeRecommendationModel> animeRecommendationPageFutuer;
   Anime anime = Anime();
+
+  @override
+  void initState() {
+    animeRecommendationPageFutuer = anime.getRandomAnimeRecommendation();
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return FutureBuilder(
-        future: anime.getRandomAnimeRecommendation(),
+        future: animeRecommendationPageFutuer,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           RandomAnimeRecommendationModel? randomAnimeRecommendationModel =
               snapshot.data;

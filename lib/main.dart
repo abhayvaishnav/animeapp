@@ -1,6 +1,5 @@
+import 'package:animeapp/navigator.dart';
 import 'package:flutter/material.dart';
-
-import 'Screens/Home Pages/animepage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,9 +12,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const AnimeHomePage(),
+          colorScheme: ColorScheme.fromSwatch().copyWith(
+        primary: const Color(0xFF343A40),
+      )),
+      home: const AppNavigator(),
     );
   }
 }
+// Color(0xFF5c61af)

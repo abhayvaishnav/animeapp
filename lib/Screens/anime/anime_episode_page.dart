@@ -20,8 +20,10 @@ class AnimeEpisodes extends StatefulWidget {
 
 class _AnimeEpisodesState extends State<AnimeEpisodes> {
   Anime anime = Anime();
+  late Future<AnimeEpisodesModel> animeEpisodeFuture;
   @override
   void initState() {
+    animeEpisodeFuture = anime.getAnimeEpisodes(widget.animeID.toString());
     super.initState();
     debugPrint(widget.animeID);
   }
@@ -57,7 +59,7 @@ class _AnimeEpisodesState extends State<AnimeEpisodes> {
                   height: height,
                   width: width,
                   child: FutureBuilder(
-                      future: anime.getAnimeEpisodes(widget.animeID.toString()),
+                      future: animeEpisodeFuture,
                       builder: (BuildContext context, AsyncSnapshot snapshot) {
                         AnimeEpisodesModel? animeEpisodesModel = snapshot.data;
                         final error = snapshot.error;
