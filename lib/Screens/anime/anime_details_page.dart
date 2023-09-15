@@ -13,12 +13,10 @@ import '../../widgets/trailer_widget.dart';
 import 'anime_episode_page.dart';
 
 class AnimeDetailPage extends StatefulWidget {
-  final AnimeModel? topAiringAnime;
-  final int index;
+  final Datum? topAiringAnime;
   final Color pageColor;
   const AnimeDetailPage({
     super.key,
-    required this.index,
     required this.topAiringAnime,
     required this.pageColor,
   });
@@ -35,7 +33,7 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
 
   @override
   Widget build(BuildContext context) {
-    String? trailerURL = widget.topAiringAnime?.data[widget.index].trailerURL;
+    String? trailerURL = widget.topAiringAnime?.trailerURL;
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
@@ -52,7 +50,7 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
         elevation: 0,
         centerTitle: true,
         title: Text(
-          "${widget.topAiringAnime?.data[widget.index].title}",
+          "${widget.topAiringAnime?.title}",
           style: AppStyle.mainTitle,
         ),
       ),
@@ -65,32 +63,25 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
                 height: height,
                 width: width,
                 topAiringAnime: widget.topAiringAnime,
-                index: widget.index,
               ),
               const SizedBox(height: 20),
               GenresWidget(
                 topAiringAnime: widget.topAiringAnime,
                 width: width,
-                index: widget.index,
               ),
               const SizedBox(height: 20),
-              if (trailerURL != null)
-                TrailerWidget(index: widget.index, trailerURL: trailerURL),
+              if (trailerURL != null) TrailerWidget(trailerURL: trailerURL),
               const SizedBox(height: 20),
-              CustomExpandableText(
-                  text:
-                      "${widget.topAiringAnime?.data[widget.index].synopsis}"),
+              CustomExpandableText(text: "${widget.topAiringAnime?.synopsis}"),
               const SizedBox(height: 20),
               CharactersWidget(
                 height: height,
                 width: width,
                 pageColor: widget.pageColor,
-                getAnimeCharacters:
-                    widget.topAiringAnime!.data[widget.index].malId.toString(),
+                getAnimeCharacters: widget.topAiringAnime!.malId.toString(),
               ),
               const SizedBox(height: 20),
-              widget.topAiringAnime?.data[widget.index].status ==
-                      "Not yet aired"
+              widget.topAiringAnime?.status == "Not yet aired"
                   ? Container()
                   : EpisodeList(
                       function: () {
@@ -98,11 +89,9 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
                             context,
                             MaterialPageRoute(
                               builder: (builder) => AnimeEpisodes(
-                                title:
-                                    "${widget.topAiringAnime?.data[widget.index].title}",
-                                animeID: widget
-                                    .topAiringAnime?.data[widget.index].malId
-                                    .toString(),
+                                title: "${widget.topAiringAnime?.title}",
+                                animeID:
+                                    widget.topAiringAnime?.malId.toString(),
                                 pageColor: widget.pageColor,
                               ),
                             ));
@@ -114,7 +103,7 @@ class _AnimeDetailPageState extends State<AnimeDetailPage> {
                 width: width,
                 pageColor: widget.pageColor,
                 getAnimeRecommendation:
-                    '${widget.topAiringAnime?.data[widget.index].malId.toString()}',
+                    '${widget.topAiringAnime?.malId.toString()}',
               )
             ],
           ),

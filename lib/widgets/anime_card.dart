@@ -32,8 +32,7 @@ class _AnimeCardState extends State<AnimeCard> {
         context,
         MaterialPageRoute(
           builder: (builder) => AnimeDetailPage(
-            topAiringAnime: widget.topAiringAnime,
-            index: widget.index,
+            topAiringAnime: widget.topAiringAnime?.data.first,
             pageColor: widget.gradientColor[1],
           ),
         ),

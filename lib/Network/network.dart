@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:animeapp/Models/Anime/anime_model_rec.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 
@@ -24,13 +25,13 @@ class Anime {
   }
 
   /// get anime details by id
-  Future<AnimeModel> getAnimeByID(String animeID) async {
+  Future<AnimeModelRec> getAnimeByID(String animeID) async {
     String animeDetailByIdURL = 'https://api.jikan.moe/v4/anime/$animeID';
     Response response = await get(Uri.parse(animeDetailByIdURL));
     if (response.statusCode == 200 || response.statusCode == 400) {
       debugPrint('Calling Anime API URL $animeDetailByIdURL....');
       debugPrint(response.body);
-      return AnimeModel.fromJson(jsonDecode(response.body));
+      return AnimeModelRec.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Failed to load data');
     }

@@ -18,6 +18,7 @@ class _RandomAnimeSuggestionState extends State<RandomAnimeSuggestion> {
   @override
   void initState() {
     animeRecommendationPageFutuer = anime.getRandomAnimeRecommendation();
+
     super.initState();
   }
 
@@ -50,7 +51,7 @@ class _RandomAnimeSuggestionState extends State<RandomAnimeSuggestion> {
                       Container(
                         height: height * 0.35,
                         width: width,
-                        margin: const EdgeInsets.all(10),
+                        margin: const EdgeInsets.all(5),
                         padding: const EdgeInsets.all(2),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
@@ -81,15 +82,15 @@ class _RandomAnimeSuggestionState extends State<RandomAnimeSuggestion> {
                                   Expanded(
                                     child: Container(
                                         height: height,
-                                        width: width * 0.42,
+                                        width: width * 0.40,
                                         margin: const EdgeInsets.all(10),
                                         decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
+                                          // borderRadius:
+                                          //     BorderRadius.circular(10),
                                           // border: Border.all(
-                                          //     width: 1,
-                                          //     color: Colors.black),
+                                          // width: 1, color: Colors.black),
                                           image: DecorationImage(
+                                            fit: BoxFit.contain,
                                             image: NetworkImage(
                                               '${randomAnimeRecommendationModel?.data[index1].entry[index2].imageURL}',
                                             ),
@@ -121,30 +122,5 @@ class _RandomAnimeSuggestionState extends State<RandomAnimeSuggestion> {
             return const Center(child: CircularProgressIndicator());
           }
         });
-    // Scaffold(
-    //   appBar: AppBar(
-    //     leading: IconButton(
-    //       icon: const Icon(Icons.arrow_back_ios_new_rounded),
-    //       onPressed: () {
-    //         Navigator.pop(context);
-    //       },
-    //     ),
-    //     iconTheme: const IconThemeData(color: Colors.black),
-    //     backgroundColor: Colors.white,
-    //     elevation: 0.0,
-    //     title: const Text(
-    //       "Suggested by the user",
-    //       style: TextStyle(color: Colors.black),
-    //     ),
-    //     centerTitle: true,
-    //   ),
-    //   body: SingleChildScrollView(
-    //     child: Column(
-    //       children: [
-
-    //       ],
-    //     ),
-    //   ),
-    // );
   }
 }

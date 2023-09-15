@@ -1,14 +1,14 @@
+import 'package:animeapp/Models/Anime/anime_model_rec.dart';
 import 'package:animeapp/Models/Anime/anime_model.dart';
+import 'package:animeapp/app_style.dart';
 import 'package:flutter/material.dart';
 
-import '../app_style.dart';
-
-class TopInfoWidget extends StatefulWidget {
+class TopInfoWidgetRecom extends StatefulWidget {
   final double height;
   final double width;
-  final Datum? topAiringAnime;
+  final AnimeModelRecomData? topAiringAnime;
 
-  const TopInfoWidget({
+  const TopInfoWidgetRecom({
     super.key,
     required this.height,
     required this.width,
@@ -16,10 +16,10 @@ class TopInfoWidget extends StatefulWidget {
   });
 
   @override
-  State<TopInfoWidget> createState() => _TopInfoWidgetState();
+  State<TopInfoWidgetRecom> createState() => _TopInfoWidgetRecomState();
 }
 
-class _TopInfoWidgetState extends State<TopInfoWidget> {
+class _TopInfoWidgetRecomState extends State<TopInfoWidgetRecom> {
   @override
   Widget build(BuildContext context) {
     return Container(

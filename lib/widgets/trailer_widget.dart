@@ -5,12 +5,10 @@ import '../Network/network.dart';
 
 class TrailerWidget extends StatefulWidget {
   final String trailerURL;
-  final int index;
 
   const TrailerWidget({
     super.key,
     required this.trailerURL,
-    required this.index,
   });
 
   @override

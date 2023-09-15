@@ -1,23 +1,22 @@
+import 'package:animeapp/Models/Anime/anime_model_rec.dart';
+import 'package:animeapp/app_style.dart';
 import 'package:flutter/material.dart';
 
-import '../Models/Anime/anime_model.dart';
-import '../app_style.dart';
-
-class GenresWidget extends StatefulWidget {
-  final Datum? topAiringAnime;
+class GenresWidgetRecom extends StatefulWidget {
+  final AnimeModelRecomData? topAiringAnime;
   final double width;
 
-  const GenresWidget({
+  const GenresWidgetRecom({
     super.key,
     required this.topAiringAnime,
     required this.width,
   });
 
   @override
-  State<GenresWidget> createState() => _GenresWidgetState();
+  State<GenresWidgetRecom> createState() => _GenresWidgetRecomState();
 }
 
-class _GenresWidgetState extends State<GenresWidget> {
+class _GenresWidgetRecomState extends State<GenresWidgetRecom> {
   @override
   Widget build(BuildContext context) {
     return Container(
