@@ -7,6 +7,4 @@ An App made for anime lover, All anime details at one place
 ![](Assets/readmeImages/03.png)
 ![](Assets/readmeImages/04.png)
 ![](Assets/readmeImages/05.png)
-![](Assets/readmeImages/06.png)
-![](Assets/readmeImages/07.png)
 
